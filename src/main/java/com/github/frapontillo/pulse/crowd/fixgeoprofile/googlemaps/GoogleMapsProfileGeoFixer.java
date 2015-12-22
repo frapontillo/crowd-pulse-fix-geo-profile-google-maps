@@ -55,6 +55,10 @@ public class GoogleMapsProfileGeoFixer extends IPlugin<Profile, Profile, VoidCon
         return PLUGIN_NAME;
     }
 
+    @Override public IPlugin<Profile, Profile, VoidConfig> getInstance() {
+        return new GoogleMapsProfileGeoFixer();
+    }
+
     @Override public VoidConfig getNewParameter() {
         return new VoidConfig();
     }
