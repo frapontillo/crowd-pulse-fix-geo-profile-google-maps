@@ -17,6 +17,7 @@
 plugins {
     id 'java'
     id 'maven'
+    id "com.github.frapontillo.switchdependencies" version "0.0.1-alpha.0"
 }
 
 sourceCompatibility = 1.8
@@ -32,8 +33,16 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.frapontillo:pulse:0.0.1'
-    compile 'com.github.frapontillo:crowd-pulse-data-java:0.0.1'
-    compile 'com.github.frapontillo:crowd-pulse-fix-geo-profile:0.0.1'
-    compile group: 'com.google.maps', name:'google-maps-services', version:'0.1.6'
+    compile 'com.google.maps:google-maps-services:0.1.6'
+}
+
+switchDependencies {
+    develop {
+        truthy = {
+            compile project(':crowd-pulse-fix-geo-profile')
+        }
+        falsy = {
+            compile 'com.github.frapontillo:crowd-pulse-fix-geo-profile:0.0.1'
+        }
+    }
 }
